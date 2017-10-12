@@ -2,6 +2,7 @@ from pyserver import WSGIPyServer
 from pyweb.core.scheme import Scheme
 from pyweb.endpoint import Endpoint
 from pyweb.http.request import HttpRequest
+from pyweb.logger.logger import logger
 
 class Pyweb:
 
@@ -26,6 +27,7 @@ class Pyweb:
         return (status, headers, body)
 
     def run(self, debug=False):
+        logger.set_debug(debug)
+        logger.debug('Starting pyweb application...')
         server = WSGIPyServer(self.wsgi_app)
         server.run()
-

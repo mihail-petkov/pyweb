@@ -1,4 +1,5 @@
 from pyweb.core.exceptions import EndpointAlreadyRegistered
+from pyweb.logger.logger import logger
 
 class Scheme:
 
@@ -16,7 +17,6 @@ class Scheme:
 
     def __find_request_handler(self, endpoint):
         for route in self.routes:
-            print(route)
             if self.__do_endpoint_exist(endpoint, route):
                 return self.routes[route][endpoint.type]
         return None
@@ -67,6 +67,7 @@ class Scheme:
         self.routes[path][type] = request_handler
 
     def process_request(self, current_request):
+        logger.info('Processing request {}'.format(current_request))
         request_handler = self.__find_request_handler(current_request)
         if not request_handler:
             return self.__not_found_response()
