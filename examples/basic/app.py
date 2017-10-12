@@ -8,11 +8,11 @@ def index():
 
 @app.route('/test', 'GET')
 def index():
-    return { 'test': '123' }
+    return { 'test': 'GET response' }
 
 @app.route('/test', 'POST')
 def index():
-    return { 'test': '123' }
+    return { 'test': 'POST response' }
 
 @app.route('/test/<deviceId>/device', 'POST')
 def index():
