@@ -1,6 +1,6 @@
 from pyweb.http.request_type import HttpRequestType
 
-class Endpoint:
+class RequestContext:
     def __init__(self, path, type, handler):
         self.__path = path
         self.__type = type
@@ -19,13 +19,8 @@ class Endpoint:
             raise NotAllowedRequestTypeException(self.__type)
 
     def __format_path(self):
-        self.__convert_slashes_to_backslashes()
         self.__remove_last_slash()
         self.__remove_double_slashes()
-
-    def __convert_slashes_to_backslashes(self):
-        # TODO: 
-        print('converting...')
 
     def __remove_last_slash(self):
         if self.__path.endswith('/'):
